@@ -1,9 +1,19 @@
+#DATA PARTITION with CARET: train and test
+
+createDataPartition: #create series of test/training partitions
+createResample #creates one or more bootstrap samples.
+createFolds #splits the data into k groups
+createTimeSlices #creates cross-validation split for series data.
+groupKFold #splits the data based on a grouping factor.
+
 # Avoid overfitting:
 # fitting then bad performance 
-# install.packages("e1071")
+install.packages("e1071")
 library(e1071)
 
-#Data Partition
+# Focus on createDataPartition and createFolds:
+
+# I ) Data Partition: random split % for training and testing
 set.seed(123)
 ind1 <- createDataPartition(y=iris$Species, p=0.6, list=F) #p=0.6 : 60% for training
 training <- iris[ind1,]
@@ -12,7 +22,9 @@ head(ind1, 10)
 
 #caveat: skewed data
 
-#K-Fold : cross-validation  
+# II ) K-Fold : cross-validation  
+
+# K is the number of splits
 fitControl <- trainControl(method="cv",number=10)
 model <- train(Species~., data=training,
                trControl =fitControl, method="lda") #. is everything
