@@ -84,5 +84,3 @@ m <- c("John", "Mary", "John", "John", "Jeff", "Mary")
 m
 factor(m) # displays the different categories (unique names, in this case)
 table(m) #frequence of each name
-
-#
