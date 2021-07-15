@@ -71,4 +71,18 @@ m2
 cbind(m, m2)
 rbind(m, m2)
 
+# Matrices Operation:
+m1 <- matrix(1:9, nrow=3, ncol=3)
+m2 <- matrix(rep(10,9),3,3)
+m1
+m2
+m1+m2
+m1 %*% m2 #matrix multiplication
+
+#FACTORS: used to represent categorical data
+m <- c("John", "Mary", "John", "John", "Jeff", "Mary")
+m
+factor(m) # displays the different categories (unique names, in this case)
+table(m) #frequence of each name
+
 #
