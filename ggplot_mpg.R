@@ -30,6 +30,26 @@ qplot(Sepal.Length,data=iris,geom="density",
 qplot(Sepal.Length,Petal.Length,facets=.~Species, data=iris)
 qplot(Sepal.Length,Petal.Length,facets=.~Species, data=iris, color=Species, geom=c("point", "smooth"), method=lm)
 
+###ADVANCED
+gp <- ggplot(mpg, aes(hwy, cty))
+
+gp+geom_point(aes(color=cyl))
+gp+geom_point(aes(color=factor(cyl)))
+gp+geom_point(aes(color=factor(cyl)))+geom_smooth(method="lm")
+gp+geom_point(aes(color=factor(cyl)))+geom_smooth(method="lm")
++facet_grid(.~cyl)
+# Save plot to file
+ggsave("plot.png",width=5,height=5)
+
+
+gp+geom_point(aes(color=factor(cyl),
+size=factor(cyl)))+
+  geom_smooth(method="lm")+
+  xlab("Highway miles per gallon")+
+  ylab("city miles per gallon")+
+  ggtitle("Scatter plot for cty & hwy")+
+  xlim(10,40)+ylim(10,40)+
+  theme_bw(base_size = 15)
 
 
 data(mpg)
