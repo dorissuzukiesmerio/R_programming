@@ -2,10 +2,37 @@
 
 rm(list=ls())
 #View(mpg)
-dev.off()
-data(mpg)
+dev.off() #clears plots in view
 
+
+#install.packages(ggplot2)
 library(ggplot2)
+# Plots are made of aes (size, shape, color) and geom (points, lines)
+
+#Scatter plot: 
+data(iris)
+qplot(Sepal.Length, Petal.Length, data=iris) #simple
+qplot(Sepal.Length, Petal.Length, data=iris,
+      color=factor(Species),
+      shape=factor(Species)) #aesthetic
+qplot(Sepal.Length, Petal.Length, data=iris,
+      geom=c("point","smooth")) #geometry
+qplot(Sepal.Length, Petal.Length, data=iris, color=Species,
+      geom=c("point","smooth"),method="lm")
+
+#Basic qplot: Histogram
+qplot(Sepal.Length,fill=Species, data=iris)
+qplot(Sepal.Length,data=iris,geom="density")
+qplot(Sepal.Length,data=iris,geom="density",
+      color=Species)
+
+#Basic qplots:Facets
+qplot(Sepal.Length,Petal.Length,facets=.~Species, data=iris)
+qplot(Sepal.Length,Petal.Length,facets=.~Species, data=iris, color=Species, geom=c("point", "smooth"), method=lm)
+
+
+
+data(mpg)
 ggplot(mpg, aes(hwy,cty))+geom_point(aes(col=factor(cyl)))+
     geom_smooth(method="lm")+ #linear model
     facet_grid(.~cyl)+
@@ -86,3 +113,13 @@ ggplot(data = SC_counties)+
                color="black")+
   coord_fixed(1.3)+
   guides(fill=FALSE)
+
+# Notes:
+#Basic component of ggplot
+#A data frame
+#aes: aesthetic mappings showing how data are mapped to color, size
+#geoms: geometric objects like points, lines, shapes.
+#facets: for conditional plots.
+#stats: statistical transformations like binning, quanti les, smoothing.
+#scales: what scale an aesthetic map uses
+#coordinate system
