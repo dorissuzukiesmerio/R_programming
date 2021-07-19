@@ -4,6 +4,7 @@ m <- matrix(1:12,3,4)
 print(m)
 apply(m,1,sum) # margin==1 : rows
 apply(m,2,sum) # margin==2 : columns
+# is not faster than loop, but is simpler coding
 
 #There are default functions 
 rowSums(m)
